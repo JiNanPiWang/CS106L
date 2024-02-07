@@ -1,0 +1,7 @@
+Name:
+SunetID:
+
+1. What's const-correctness and why is it important for programmers?
+
+
+2. Is your class const-correct? How do you know?
