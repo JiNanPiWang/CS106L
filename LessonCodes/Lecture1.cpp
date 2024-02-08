@@ -1,7 +1,7 @@
 //
 // Created by Samsara on 2024/2/8.
 // File name: Lesson1.cpp
-// Description: 
+// Description: CS 106L Fall 2019 - Lecture 1: Streams I (Screencast)
 //
 #include <sstream>
 #include <iostream>
@@ -21,8 +21,14 @@ int main()
     cout << oss.str() << endl;
 
     // 从尾部添加内容
-    oss.seekp(0, stringstream::end); // 等价于ostringstream oss("Ito En Green Tea ", stringstream::ate);
-    oss << "!";
+//    oss.seekp(0, stringstream::end); // 等价于ostringstream oss("Ito En Green Tea ", stringstream::ate);
+//    oss << "!";
+//    cout << oss.str() << endl;
+
+    // 就像cout，oss会从后面一直加
+    // oss 不能直接输出是因为 ostringstream 是用于构建字符串的输出流，
+    // 它将数据以字符串的形式存储在内存中，而不是直接输出到屏幕或文件。
+    oss << "(Pack of " << 12 << ")";
     cout << oss.str() << endl;
 
     return 0;

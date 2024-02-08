@@ -3,4 +3,4 @@ project(CS106L)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(CS106L LessonCodes/Lesson1.cpp)
+add_executable(CS106L LessonCodes/Lecture1.cpp)
