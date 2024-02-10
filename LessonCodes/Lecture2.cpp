@@ -18,9 +18,12 @@ int main()
     int age;
     cin >> age;
 
+    // 需要忽视掉age后面输入的空格，否则下面的getline就会读入空格并认为读入完毕
+    cin.ignore();
+
     cout << "Where are you from? ";
     string home;
-    cin >> home;
+    getline(cin, home, '\n');
 
     cout << "Hello " << name << "(age " << age << " from " << home << ")" << endl;
 
