@@ -10,10 +10,9 @@ using namespace std;
 
 int main()
 {
-    // 输入Avery Wang，会出现错误，因为cin会认为空格代表清除缓冲区，Wang会被输入age，导致错误，输入被中止
     cout << "What is your name? ";
     string name;
-    cin >> name;
+    getline(cin, name, '\n');
 
     cout << "What is your age? ";
     int age;
