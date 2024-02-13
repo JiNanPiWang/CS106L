@@ -7,6 +7,6 @@ add_executable(CS106L
 #        LessonCodes/Lecture1.cpp
 #        LessonCodes/Lecture2.cpp
 #        LessonCodes/Lecture3.cpp
-        LessonCodes/Lecture5.cpp
-#        Assignments/Assignment1_SimpleEnroll/main.cpp
+#        LessonCodes/Lecture5.cpp
+        LessonCodes/Lecture6.cpp
         )
