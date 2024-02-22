@@ -11,7 +11,8 @@ using namespace std;
 int main()
 {
     vector<int> v{3, 2, 1, 4, 5, 6};
-    auto [min, max] = minmax_element(v.begin(), v.end());
+    auto cmp = [](const int &a, const int &b) { return a > b; };
+    auto [min, max] = minmax_element(v.begin(), v.end(), cmp);
     cout << *min << " " << *max << endl;
     return 0;
 }
