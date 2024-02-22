@@ -30,11 +30,19 @@ int main()
     // 输出调整后位于第4位置的元素（索引为3，因为开始于0）
 //    cout << "The fourth element is " << v[3] << '\n';
 
-    vector<int> v1;
-    copy_if(v.begin(), v.end(), back_inserter(v1),
-            [](int item){ return item >= 4; });
+    // copy_if是一个算法函数，通常用于从一个容器中复制满足特定条件的元素到另一个容器中。
+//    vector<int> v1;
+//    copy_if(v.begin(), v.end(), back_inserter(v1),
+//            [](int item){ return item >= 4; });
+//
+//    for (auto item: v1) {
+//        cout << item << " ";
+//    }
 
-    for (auto item: v1) {
+    //
+    transform(v.begin(), v.end(), v.begin(),
+              [](int item) { return item + 1; });
+    for (auto item: v) {
         cout << item << " ";
     }
 
