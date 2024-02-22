@@ -39,12 +39,17 @@ int main()
 //        cout << item << " ";
 //    }
 
-    //
-    transform(v.begin(), v.end(), v.begin(),
-              [](int item) { return item + 1; });
-    for (auto item: v) {
-        cout << item << " ";
-    }
+    // 对容器中的元素进行转换操作
+//    transform(v.begin(), v.end(), v.begin(),
+//              [](int item) { return item + 1; });
+//    for (auto item: v) {
+//        cout << item << " ";
+//    }
+
+    // std::ostream_iterator的构造函数接受两个参数：输出流对象和一个分隔符字符串。
+    // 当使用std::ostream_iterator来输出元素时，每次将一个元素放入std::ostream_iterator后，
+    // 该元素会被写入到输出流中，并在它之后添加指定的分隔符字符串。
+    copy(v.begin(), v.end(), ostream_iterator<int>(cout, " "));
 
     return 0;
 }
