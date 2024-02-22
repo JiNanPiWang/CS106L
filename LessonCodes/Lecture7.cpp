@@ -19,29 +19,16 @@ int countOccurences(const Collection &list, UnaryPredicate pred)
     return count;
 }
 
-class GreaterThan
-{
-public:
-    explicit GreaterThan(int limit) : limit(limit) {}
-
-    bool operator() (int val) const
-    {
-        return val >= limit;
-    }
-
-private:
-    int limit;
-};
-
 int main()
 {
     vector<int> v{1, 2, 3, 4, 5, 6};
     int limit = 4; // 创建一个GreaterThan对象，设置限制值为4
-    GreaterThan func(limit);
+
+    // 匿名函数
+    auto func = [limit](auto val){return val >= limit;};
 
     // 调用countOccurences，传入vector和GreaterThan对象
     // 注意：这里不再需要明确指定模板参数，编译器可以自动推断
-    cout << countOccurences<vector<int>>(v, func)
-            << "item is greater than " << limit;
+    cout << countOccurences(v, func) << " item is greater than " << limit;
     return 0;
 }
