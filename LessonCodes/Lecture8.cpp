@@ -31,13 +31,21 @@ int main()
 //    cout << "The fourth element is " << v[3] << '\n';
 
     // copy_if是一个算法函数，通常用于从一个容器中复制满足特定条件的元素到另一个容器中。
-//    vector<int> v1;
-//    copy_if(v.begin(), v.end(), back_inserter(v1),
-//            [](int item){ return item >= 4; });
-//
-//    for (auto item: v1) {
-//        cout << item << " ";
-//    }
+    // copy不会扩容，使用iterator adaptor可以解决这个问题
+    vector<int> v1(4);
+    vector<int> v2(0);
+    copy_if(v.begin(), v.end(), (v1.begin()),
+            [](int item){ return item >= 4; });
+    copy_if(v.begin(), v.end(), back_inserter(v2),
+            [](int item){ return item >= 4; });
+
+    cout << "v1: ";
+    for (auto item: v1)
+        cout << item << " ";
+
+    cout << "\nv2 with back_inserter: ";
+    for (auto item: v2)
+        cout << item << " ";
 
     // 对容器中的元素进行转换操作
 //    transform(v.begin(), v.end(), v.begin(),
@@ -49,7 +57,7 @@ int main()
     // std::ostream_iterator的构造函数接受两个参数：输出流对象和一个分隔符字符串。
     // 当使用std::ostream_iterator来输出元素时，每次将一个元素放入std::ostream_iterator后，
     // 该元素会被写入到输出流中，并在它之后添加指定的分隔符字符串。
-    copy(v.begin(), v.end(), ostream_iterator<int>(cout, " "));
+//    copy(v.begin(), v.end(), ostream_iterator<int>(cout, " "));
 
     return 0;
 }
