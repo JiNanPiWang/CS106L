@@ -23,6 +23,13 @@ public:
         vec.push_back(str);
     }
 
+    // 防止出现(vec+=s)+="str"不行，所以需要有返回值
+    StringVector &operator+=(const string &str)
+    {
+        vec.push_back(str);
+        return *this;
+    }
+
     // 重载输出流操作符 << 作为友元函数的原因是因为该函数需要访问 StringVector 类的私有成员 vec。
     friend ostream &operator<<(ostream &os, const StringVector &stringVector)
     {
@@ -48,7 +55,7 @@ int main()
 
     StringVector v = {"abc", "def"};
     v.push_back("ghi");
-    v.push_back("jkl");
+    v += ("jkl");
     cout << v;
 
     return 0;
