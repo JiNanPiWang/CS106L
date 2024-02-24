@@ -18,6 +18,12 @@ public:
     // 初始化列表
     StringVector(const initializer_list<string> &vec) : vec(vec) {}
 
+    void push_back(const string &str)
+    {
+        vec.push_back(str);
+    }
+
+    // 重载输出流操作符 << 作为友元函数的原因是因为该函数需要访问 StringVector 类的私有成员 vec。
     friend ostream &operator<<(ostream &os, const StringVector &stringVector)
     {
         os << "StringVector: ";
@@ -41,6 +47,8 @@ int main()
     // operator+=(operator[](v, 1), "!");
 
     StringVector v = {"abc", "def"};
+    v.push_back("ghi");
+    v.push_back("jkl");
     cout << v;
 
     return 0;
