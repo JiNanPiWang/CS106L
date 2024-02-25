@@ -30,13 +30,15 @@ public:
         return *this;
     }
 
-    StringVector operator+(const StringVector &other) const
-    {
-        // 如果不新建，则v = v + v会导致+运算完后，左边的v也被改变
-        auto new_vec = *this;
-        copy(other.vec.begin(), other.vec.end(), back_inserter(new_vec.vec));
-        return new_vec;
-    }
+//    StringVector operator+(const StringVector &other) const
+//    {
+//        // 如果不新建，则v = v + v会导致+运算完后，左边的v也被改变
+//        auto new_vec = *this;
+//        copy(other.vec.begin(), other.vec.end(), back_inserter(new_vec.vec));
+//        return new_vec;
+//    }
+
+    friend StringVector operator+(const StringVector &a, const StringVector &b);
 
     // 重载输出流操作符 << 作为友元函数的原因是因为该函数需要访问 StringVector 类的私有成员 vec。
     friend ostream &operator<<(ostream &os, const StringVector &stringVector)
@@ -47,6 +49,13 @@ public:
         return os;
     }
 };
+
+StringVector operator+(const StringVector &a, const StringVector &b)
+{
+    auto new_vec = a;
+    copy(b.vec.begin(), b.vec.end(), back_inserter(new_vec.vec));
+    return new_vec;
+}
 
 int main()
 {
