@@ -6,31 +6,21 @@
 #include <iostream>
 #include <vector>
 
-using std::cout, std::endl;
-
-template<typename T>
-void print(T &t)
-{
-    std::cout << "It is lvalue: " << t << std::endl;
-}
-
-template<typename T>
-void print(T &&t)
-{
-    std::cout << "It is rvalue: " << t << std::endl;
-}
-
-template<typename T>
-void testForward(T &&t)
-{
-    print(t);
-    print(std::forward<T>(t));
-}
+using std::cout, std::endl, std::vector;
 
 int main()
 {
-    int x = 42;
-    testForward(x);
-    testForward(42);
+    // 左右值分辨
+    int val = 2;
+    int *ptr = 0x02248837;
+    vector<int> v1{1, 2, 3};
+
+    auto v4 = v1 + v2; // v1 is l, v2 is l, but v1 + v2 is rvalue
+    v1 += v4;
+    size_t size = v.size();
+    val = static_cast<int> (size);
+    v1[1] = 4 * i;
+    ptr = &val; // 右值，val的地址没有地址
+    v1[2] = *ptr;
     return 0;
 }
