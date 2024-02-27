@@ -5,23 +5,53 @@
 //
 #include <iostream>
 #include <vector>
+#include <random>
+#include <chrono>
+#include <string>
 
-using std::cout, std::endl, std::vector;
+using std::cout, std::endl, std::vector, std::string;
+
+class StringVector
+{
+    vector<string> vec;
+public:
+    // 初始化列表
+    StringVector(const std::initializer_list<string> &vec) : vec(vec) {}
+    StringVector(StringVector &&vec)  noexcept : vec(std::move(vec.vec)) {}
+};
+
+class StringVector1
+{
+    vector<string> vec;
+public:
+    // 初始化列表
+    StringVector1(const std::initializer_list<string> &vec) : vec(vec) {}
+    StringVector1(StringVector1 &&vec) : vec(vec.vec) {}
+};
 
 int main()
 {
-    // 左右值分辨
-    int val = 2;
-    int *ptr = 0x02248837;
-    vector<int> v1{1, 2, 3};
+    vector<int> v(100000000);
 
-    auto &ptr2 = ptr;
-    auto &&v4 = v1 + v2; // 右值引用，可以理解为延长了右值的生命
-    auto &ptr3 = &val;
+    // 测试使用std::move()的情况
+    auto start = std::chrono::steady_clock::now();
+    StringVector sv = StringVector{"1"};
+    auto end = std::chrono::steady_clock::now();
+    std::chrono::duration<double> moveDuration = end - start;
+    // 输出测试结果
+    std::cout << "Time taken with std::move(): " << moveDuration.count() << " seconds" << std::endl;
 
-    auto &&val2 = val; // 错误，不能将左值绑定给右值引用
 
-    const auto &ptr3 = ptr + 5; // const可以
+    vector<int> v1(100000000);
+    // 测试使用std::move()的情况
+    start = std::chrono::steady_clock::now();
+    StringVector1 sv1 = StringVector1{"1"};
+    end = std::chrono::steady_clock::now();
+    moveDuration = end - start;
+    // 输出测试结果
+    std::cout << "Time taken without std::move(): " << moveDuration.count() << " seconds" << std::endl;
+
+
 
     return 0;
 }
