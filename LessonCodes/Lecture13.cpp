@@ -6,6 +6,7 @@
 //
 #include <iostream>
 #include <chrono>
+#include <cassert>
 
 using std::cout, std::endl;
 
@@ -38,6 +39,13 @@ public:
     }
 };
 
+void test(const Array &b, const Array &c)
+{
+    assert(b.size_ == c.size_);
+    for (int i = 0; i < b.size_; ++i)
+        assert(b.data_[i] == c.data_[i]);
+}
+
 int main()
 {
     Array a(int(1e6));
@@ -48,5 +56,6 @@ int main()
     Array b(a);
     Array c(std::move(a));
     test(b, c);
+    cout << "Move constructor equals copy constructor, move correct!" << endl;
     return 0;
 }
