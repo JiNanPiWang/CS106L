@@ -1,57 +1,52 @@
 //
 // Created by Samsara on 2024/2/26.
 // File name: Lecture13.cpp
-// Description: 
+// Description: 测试std::move效率，别用vector，因为它复制自动使用move
+// 对比时，最好使用大内存的指针，因为这样差别很大
 //
 #include <iostream>
-#include <vector>
-#include <random>
 #include <chrono>
-#include <string>
 
-using std::cout, std::endl, std::vector, std::string;
+using std::cout, std::endl;
 
-class StringVector
+class Array
 {
-    vector<string> vec;
 public:
-    // 初始化列表
-    StringVector(const std::initializer_list<string> &vec) : vec(vec) {}
-    StringVector(StringVector &&vec)  noexcept : vec(std::move(vec.vec)) {}
-};
+    int size_;
+    int *data_;
 
-class StringVector1
-{
-    vector<string> vec;
-public:
-    // 初始化列表
-    StringVector1(const std::initializer_list<string> &vec) : vec(vec) {}
-    StringVector1(StringVector1 &&vec) : vec(vec.vec) {}
+    explicit Array(int size) : size_(size), data_(new int[size]) {}
+
+    Array(Array &other) : size_(other.size_), data_(new int[size_])
+    {
+        for (int i = 0; i < size_; ++i)
+        {
+            data_[i] = other.data_[i];
+        }
+    }
+
+    Array(Array &&other)  noexcept : size_(other.size_), data_(other.data_)
+    {
+        // 因为现在这个对象指向了other原来内存的内容，如果不清除other的指针，那么other析构时，会把data_也清除
+        // 因为是std::move，返回右值引用
+        other.data_ = nullptr;
+    }
+
+    virtual ~Array()
+    {
+        delete[] data_;
+    }
 };
 
 int main()
 {
-    vector<int> v(100000000);
-
-    // 测试使用std::move()的情况
-    auto start = std::chrono::steady_clock::now();
-    StringVector sv = StringVector{"1"};
-    auto end = std::chrono::steady_clock::now();
-    std::chrono::duration<double> moveDuration = end - start;
-    // 输出测试结果
-    std::cout << "Time taken with std::move(): " << moveDuration.count() << " seconds" << std::endl;
-
-
-    vector<int> v1(100000000);
-    // 测试使用std::move()的情况
-    start = std::chrono::steady_clock::now();
-    StringVector1 sv1 = StringVector1{"1"};
-    end = std::chrono::steady_clock::now();
-    moveDuration = end - start;
-    // 输出测试结果
-    std::cout << "Time taken without std::move(): " << moveDuration.count() << " seconds" << std::endl;
-
-
-
+    Array a(int(1e6));
+    for (int i = 0; i < a.size_; ++i)
+    {
+        a.data_[i] = rand();
+    }
+    Array b(a);
+    Array c(std::move(a));
+    test(b, c);
     return 0;
 }
