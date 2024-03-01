@@ -33,6 +33,29 @@ public:
         other.data_ = nullptr;
     }
 
+    Array &operator=(Array &&other) noexcept
+    {
+        if (*this != other)
+        {
+            delete[] data_;
+            size_ = other.size_;
+            data_ = other.data_; // 转移资源所有权
+            other.data_ = nullptr;  // 避免源对象析构时释放资源
+        }
+        return *this;
+    }
+
+    bool operator==(const Array &rhs) const
+    {
+        return size_ == rhs.size_ &&
+               data_ == rhs.data_;
+    }
+
+    bool operator!=(const Array &rhs) const
+    {
+        return !(rhs == *this);
+    }
+
     virtual ~Array()
     {
         delete[] data_;
@@ -60,7 +83,7 @@ int main()
     auto duration1 = std::chrono::duration_cast<std::chrono::microseconds>(end1 - start1);
 
     auto start2 = std::chrono::high_resolution_clock::now();
-    Array c(std::move(a));
+    Array c = (std::move(a));
     auto end2 = std::chrono::high_resolution_clock::now();
     auto duration2 = std::chrono::duration_cast<std::chrono::microseconds>(end2 - start2);
 
