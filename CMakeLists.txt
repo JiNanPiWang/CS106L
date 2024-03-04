@@ -13,7 +13,8 @@ add_executable(CS106L
 #        LessonCodes/Lecture8.cpp
 #        LessonCodes/Lecture10.cpp
 #        LessonCodes/Lecture11.cpp
-        LessonCodes/Lecture13.cpp
+#        LessonCodes/Lecture13.cpp
 #        LessonCodes/Lecture14.cpp
+        LessonCodes/Lecture15.cpp
 )
 
