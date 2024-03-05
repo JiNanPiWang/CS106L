@@ -56,6 +56,12 @@ void rawPtrFn()
 // 符合RAII
 void rawPtrFnRAII()
 {
+    // 独占拥有权，一个对象只能由一个 unique_ptr 拥有。
     std::unique_ptr<Node> n(new Node);
+
+    // 共享拥有权，多个 shared_ptr 可以同时拥有相同的对象。当所有没有指针指向对象时析构
+    std::shared_ptr<Node> n1(new Node);
+    std::shared_ptr<Node> n2 = n1;
+
     // ...
 }
