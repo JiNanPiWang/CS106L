@@ -9,6 +9,7 @@
 #include <fstream>
 #include <mutex>
 #include <map>
+#include <memory>
 
 // 不符合RAII，也就是资源获取即初始化
 void printFile()
@@ -40,5 +41,21 @@ void cleanDatabaseRAII(std::mutex &databaseLock, std::map<int, int> &database)
 {
     // 详细看源码，std::lock_guard<std::mutex>是类型，可以理解为vector<int>，但其似乎没有成员函数
     std::lock_guard<std::mutex> Lock(databaseLock);
+    // ...
+}
+
+// 不符合RAII
+struct Node {};
+void rawPtrFn()
+{
+    Node *n = new Node;
+    // ...
+    delete n;
+}
+
+// 符合RAII
+void rawPtrFnRAII()
+{
+    std::unique_ptr<Node> n(new Node);
     // ...
 }
