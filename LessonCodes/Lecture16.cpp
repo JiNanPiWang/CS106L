@@ -63,5 +63,11 @@ void rawPtrFnRAII()
     std::shared_ptr<Node> n1(new Node);
     std::shared_ptr<Node> n2 = n1;
 
+    // 与 std::shared_ptr 不同，std::weak_ptr 不会增加对象的引用计数。
+    // 它提供了一种方法来观察和访问 shared_ptr 管理的对象，而不会造成所有权问题。
+    std::weak_ptr<Node> n3 = n2;
+    // weak_ptr 本身并不拥有对象。相反，当你需要访问 weak_ptr 所指向的对象时，你可以使用 wp.lock() 方法来尝试获取一个 std::shared_ptr
+    std::shared_ptr<Node> n4 = n3.lock();
+
     // ...
 }
