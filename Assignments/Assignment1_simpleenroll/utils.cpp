@@ -15,15 +15,15 @@
 #include <sstream>
 #include <tuple>
 #include <vector>
+#include <algorithm>
 
-// STUDENT TODO: add paths
 std::string COURSES_OFFERED_CSV_PATH = R"(D:\Projects\2024-2-26-CS106L\Assignments\Assignment1_simpleenroll\student_output\courses_offered.csv)";
 
 std::string COURSES_NOT_OFFERED_CSV_PATH = R"(D:\Projects\2024-2-26-CS106L\Assignments\Assignment1_simpleenroll\student_output\courses_not_offered.csv)";
 
 struct Course {
   std::string title; // 课程的名称
-  int number_of_units; // 课程的学分数
+  std::string number_of_units; // 课程的学分数
   std::string quarter; // 课程所在的季度
 
   // ignore this!
@@ -46,8 +46,23 @@ std::vector<std::string> split(std::string s, char delim);
  * 1) Take a look at the split function we provide
  * 2) Each LINE is a record! *this is important, so we're saying it again :>)*
  */
-void parse_csv(std::string filename, std::vector<Course> vector_of_courses) {
-  // STUDENT TODO: Implement this function
+void parse_csv(std::string filename, std::vector<Course> &vector_of_courses) {
+    std::ifstream inputFile(filename); // 创建文件输入流
+    if (inputFile.is_open()) {
+        std::string infos; // 每一行的信息
+        while (std::getline(inputFile, infos)) {
+            // 得到split分隔后的信息
+            auto return_vector = split(infos, ',');
+            auto parsed_course = Course();
+
+            // 放入parsed_course对象，方便存入vector_of_courses
+            parsed_course.title = return_vector[0];
+            parsed_course.number_of_units = return_vector[1];
+            parsed_course.quarter = return_vector[2];
+
+            vector_of_courses.push_back(parsed_course);
+        }
+    }
 }
 
 /*
@@ -62,7 +77,7 @@ void parse_csv(std::string filename, std::vector<Course> vector_of_courses) {
  * 1) Keep track of the classes that you need to delete!
  * 2) Use the delete_elem_from_vector function we give you!
  */
-void write_courses_offered(std::vector<Course> vector_of_courses) {
+void write_courses_offered(std::vector<Course> &vector_of_courses) {
   // STUDENT TODO: implement this function
 }
 
@@ -77,7 +92,7 @@ void write_courses_offered(std::vector<Course> vector_of_courses) {
  *
  * HINT: This should be VERY similar to write_courses_offered
  */
-void write_courses_not_offered(std::vector<Course> vector_of_courses) {
+void write_courses_not_offered(std::vector<Course> &vector_of_courses) {
   // STUDENT TODO: implement this function
 }
 

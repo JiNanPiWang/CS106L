@@ -9,7 +9,7 @@
 #include <system_error>
 #include <vector>
 
-std::string COURSES_PATH = "<ENTER PATH HERE>";
+std::string COURSES_PATH = R"(D:\Projects\2024-2-26-CS106L\Assignments\Assignment1_simpleenroll\courses.csv)";
 
 bool structTest() { // 测试是否能引入utils.cpp，以及结构体是否构造成功
   Course c{"Standard C++ Programming", "1", "2023-2024 Winter"};
