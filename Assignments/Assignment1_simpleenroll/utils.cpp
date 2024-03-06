@@ -115,7 +115,14 @@ void write_courses_offered(std::vector<Course> &vector_of_courses) {
  * HINT: This should be VERY similar to write_courses_offered
  */
 void write_courses_not_offered(std::vector<Course> &vector_of_courses) {
-  // STUDENT TODO: implement this function
+    std::ofstream outputFile(COURSES_NOT_OFFERED_CSV_PATH);
+    for (const auto &course : vector_of_courses) {
+        if (course.quarter != "2023-2024 Winter") {
+            if (outputFile.is_open()) {
+                outputFile << course.title << "," << course.number_of_units << "," << course.quarter << std::endl;
+            }
+        }
+    }
 }
 
 /* ######## HEYA! DON'T MODIFY ANYTHING BEYOND THIS POINT THX ######## */
