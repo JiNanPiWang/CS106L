@@ -83,7 +83,7 @@ void parse_csv(std::string filename, std::vector<Course> &vector_of_courses) {
 void write_courses_offered(std::vector<Course> &vector_of_courses) {
     std::ofstream outputFile(COURSES_OFFERED_CSV_PATH);
     for (const auto &course : vector_of_courses) {
-        if (course.quarter == "2023-2024 Winter") {
+        if (course.quarter != "null") {
             if (outputFile.is_open()) {
                 outputFile << course.title << "," << course.number_of_units << "," << course.quarter << std::endl;
             }
@@ -92,7 +92,7 @@ void write_courses_offered(std::vector<Course> &vector_of_courses) {
     while (true) {
         bool is_find = false;
         for (auto &course: vector_of_courses) {
-            if (course.quarter == "2023-2024 Winter") {
+            if (course.quarter != "null") {
                 delete_elem_from_vector(vector_of_courses, course);
                 is_find = true;
                 break;
@@ -117,7 +117,7 @@ void write_courses_offered(std::vector<Course> &vector_of_courses) {
 void write_courses_not_offered(std::vector<Course> &vector_of_courses) {
     std::ofstream outputFile(COURSES_NOT_OFFERED_CSV_PATH);
     for (const auto &course : vector_of_courses) {
-        if (course.quarter != "2023-2024 Winter") {
+        if (course.quarter == "null") {
             if (outputFile.is_open()) {
                 outputFile << course.title << "," << course.number_of_units << "," << course.quarter << std::endl;
             }

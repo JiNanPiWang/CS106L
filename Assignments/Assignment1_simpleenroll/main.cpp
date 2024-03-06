@@ -31,7 +31,8 @@ int main() {
 
   write_courses_not_offered(vector_of_courses);
 
-  FILE *pipe = popen("python3 utils/autograder.py", "r");
+  FILE *pipe = popen(
+          R"(python3 D:\Projects\2024-2-26-CS106L\Assignments\Assignment1_simpleenroll\utils\autograder.py)", "r");
   if (!pipe)
     return -1;
 
