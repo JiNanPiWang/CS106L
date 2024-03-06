@@ -52,6 +52,7 @@ void parse_csv(std::string filename, std::vector<Course> &vector_of_courses) {
     std::ifstream inputFile(filename); // 创建文件输入流
     if (inputFile.is_open()) {
         std::string infos; // 每一行的信息
+        std::getline(inputFile, infos); // 跳过第一行
         while (std::getline(inputFile, infos)) {
             // 得到split分隔后的信息
             auto return_vector = split(infos, ',');
@@ -87,6 +88,18 @@ void write_courses_offered(std::vector<Course> &vector_of_courses) {
                 outputFile << course.title << "," << course.number_of_units << "," << course.quarter << std::endl;
             }
         }
+    }
+    while (true) {
+        bool is_find = false;
+        for (auto &course: vector_of_courses) {
+            if (course.quarter == "2023-2024 Winter") {
+                delete_elem_from_vector(vector_of_courses, course);
+                is_find = true;
+                break;
+            }
+        }
+        if (!is_find)
+            break;
     }
 }
 
