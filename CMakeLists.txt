@@ -4,6 +4,7 @@ project(CS106L)
 set(CMAKE_CXX_STANDARD 20)
 
 add_executable(CS106L
+        Assignments/Assignment1_simpleenroll/main.cpp
 #        LessonCodes/Lecture1.cpp
 #        LessonCodes/Lecture2.cpp
 #        LessonCodes/Lecture3.cpp
@@ -16,7 +17,6 @@ add_executable(CS106L
 #        LessonCodes/Lecture13.cpp
 #        LessonCodes/Lecture14.cpp
 #        LessonCodes/Lecture15.cpp
-        LessonCodes/Lecture16.cpp
-        LessonCodes/Lecture17.cpp
+#        LessonCodes/Lecture16.cpp
+#        LessonCodes/Lecture17.cpp
 )
-

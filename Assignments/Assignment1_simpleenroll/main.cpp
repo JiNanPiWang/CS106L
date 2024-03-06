@@ -11,7 +11,7 @@
 
 std::string COURSES_PATH = "<ENTER PATH HERE>";
 
-bool structTest() {
+bool structTest() { // 测试是否能引入utils.cpp，以及结构体是否构造成功
   Course c{"Standard C++ Programming", "1", "2023-2024 Winter"};
   return true;
 }

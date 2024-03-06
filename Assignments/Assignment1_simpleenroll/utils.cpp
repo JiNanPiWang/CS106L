@@ -17,14 +17,14 @@
 #include <vector>
 
 // STUDENT TODO: add paths
-std::string COURSES_OFFERED_CSV_PATH = "<ENTER PATH HERE>";
+std::string COURSES_OFFERED_CSV_PATH = R"(D:\Projects\2024-2-26-CS106L\Assignments\Assignment1_simpleenroll\student_output\courses_offered.csv)";
 
-std::string COURSES_NOT_OFFERED_CSV_PATH = "<ENTER PATH HERE>";
+std::string COURSES_NOT_OFFERED_CSV_PATH = R"(D:\Projects\2024-2-26-CS106L\Assignments\Assignment1_simpleenroll\student_output\courses_not_offered.csv)";
 
 struct Course {
-  /* STUDENT TODO: ADD TYPE */ title;
-  /* STUDENT TODO: ADD TYPE */ number_of_units;
-  /* STUDENT TODO: ADD TYPE */ quarter;
+  std::string title; // 课程的名称
+  int number_of_units; // 课程的学分数
+  std::string quarter; // 课程所在的季度
 
   // ignore this!
   bool operator==(const Course &other) const {
