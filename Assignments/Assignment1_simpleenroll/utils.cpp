@@ -17,9 +17,11 @@
 #include <vector>
 #include <algorithm>
 
-std::string COURSES_OFFERED_CSV_PATH = R"(D:\Projects\2024-2-26-CS106L\Assignments\Assignment1_simpleenroll\student_output\courses_offered.csv)";
+std::string COURSES_OFFERED_CSV_PATH =
+        R"(D:\Projects\2024-2-26-CS106L\Assignments\Assignment1_simpleenroll\student_output\courses_offered.csv)";
 
-std::string COURSES_NOT_OFFERED_CSV_PATH = R"(D:\Projects\2024-2-26-CS106L\Assignments\Assignment1_simpleenroll\student_output\courses_not_offered.csv)";
+std::string COURSES_NOT_OFFERED_CSV_PATH =
+        R"(D:\Projects\2024-2-26-CS106L\Assignments\Assignment1_simpleenroll\student_output\courses_not_offered.csv)";
 
 struct Course {
   std::string title; // 课程的名称
@@ -78,7 +80,14 @@ void parse_csv(std::string filename, std::vector<Course> &vector_of_courses) {
  * 2) Use the delete_elem_from_vector function we give you!
  */
 void write_courses_offered(std::vector<Course> &vector_of_courses) {
-  // STUDENT TODO: implement this function
+    std::ofstream outputFile(COURSES_OFFERED_CSV_PATH);
+    for (const auto &course : vector_of_courses) {
+        if (course.quarter == "2023-2024 Winter") {
+            if (outputFile.is_open()) {
+                outputFile << course.title << "," << course.number_of_units << "," << course.quarter << std::endl;
+            }
+        }
+    }
 }
 
 /*
