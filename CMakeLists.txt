@@ -4,7 +4,8 @@ project(CS106L)
 set(CMAKE_CXX_STANDARD 17)
 
 add_executable(CS106L
-        Assignments/Assignment1_simpleenroll/main.cpp
+#        Assignments/Assignment1_simpleenroll/main.cpp
+        Assignments/Assignment2_marriagepact/main.cpp
 #        LessonCodes/Lecture1.cpp
 #        LessonCodes/Lecture2.cpp
 #        LessonCodes/Lecture3.cpp
