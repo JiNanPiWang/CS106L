@@ -11,9 +11,10 @@ Submit to Paperless by 11:59pm on 2/16/2024.
 #include <iostream>
 #include <vector>
 #include <concepts>
+#include <algorithm>
 
 
-// TODO: write convert_f_to_c function here. Remember it must be a template function that always returns
+// write convert_f_to_c function here. Remember it must be a template function that always returns
 // a double.
 // [function definition here]
 
@@ -27,13 +28,17 @@ double convert_f_to_c(T temp)
 template<typename Function>
 std::vector<double> get_forecast(std::vector<std::vector<int>> readings, Function fn)
 {
-    // TODO: write get_forecast here!
-
+    // write get_forecast here!
+    std::vector<double> result;
+    for (auto &weather_of_the_day : readings)
+    {
+        result.push_back(fn(weather_of_the_day));
+    }
+    return result;
 }
 
 int main()
 {
-    convert_f_to_c(100);
     std::vector<std::vector<int>> readings = {
             {70, 75, 80, 85, 90},
             {60, 65, 70, 75, 80},
@@ -46,7 +51,10 @@ int main()
 
     // TODO: Convert temperatures to Celsius and output to output.txt
 
+
     // TODO: Find the maximum temperature for each day and output to output.txt
+    auto x = get_forecast(readings,
+                          [](std::vector<int> &wea) -> double { return *std::max_element(wea.begin(), wea.end()); });
 
     // TODO: Find the minimum temperature for each day and output to output.txt
 
