@@ -5,8 +5,10 @@ set(CMAKE_CXX_STANDARD 17)
 
 add_executable(CS106L
 #        Assignments/Assignment1_simpleenroll/main.cpp
-        Assignments/Assignment2_marriagepact/main.cpp
-#        LessonCodes/Lecture1.cpp
+#        Assignments/Assignment2_marriagepact/main.cpp
+        Assignments/Assignment3_makeaclass/main.cpp
+        Assignments/Assignment3_makeaclass/class.cpp
+        #        LessonCodes/Lecture1.cpp
 #        LessonCodes/Lecture2.cpp
 #        LessonCodes/Lecture3.cpp
 #        LessonCodes/Lecture5.cpp

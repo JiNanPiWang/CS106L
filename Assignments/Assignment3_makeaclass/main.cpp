@@ -1,3 +1,4 @@
+#include <iostream>
 #include "class.h"
 
 /*
@@ -12,7 +13,9 @@
  * Must have at least one setter function ❌
  */
 
-int main() {
-  // initialize class and run this file
-  return 0;
+int main()
+{
+    bike x("Giant", "M");
+    std::cout << x << std::endl;
+    return 0;
 }
