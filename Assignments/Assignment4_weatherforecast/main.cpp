@@ -7,11 +7,12 @@ at the Stanford Daily. Be sure to read the assignment details in the PDF.
 Submit to Paperless by 11:59pm on 2/16/2024.
 */
 
-// TODO: import anything from the STL that might be useful!
+// import anything from the STL that might be useful!
 #include <iostream>
 #include <vector>
 #include <concepts>
 #include <algorithm>
+#include <numeric>
 
 
 // write convert_f_to_c function here. Remember it must be a template function that always returns
@@ -30,7 +31,7 @@ std::vector<double> get_forecast(std::vector<std::vector<int>> readings, Functio
 {
     // write get_forecast here!
     std::vector<double> result;
-    for (auto &weather_of_the_day : readings)
+    for (auto &weather_of_the_day: readings)
     {
         result.push_back(fn(weather_of_the_day));
     }
@@ -49,16 +50,31 @@ int main()
             {40, 45, 50, 55, 60}
     };
 
-    // TODO: Convert temperatures to Celsius and output to output.txt
+    // Convert temperatures to Celsius and output to output.txt
 
+    
+    // Find the maximum temperature for each day and output to output.txt
+    // 使用匿名函数和stl中的函数来完成
+    auto maximum = get_forecast(readings,
+                                [](const std::vector<int> &wea) -> double
+                                {
+                                    return *std::max_element(wea.begin(), wea.end());
+                                });
 
-    // TODO: Find the maximum temperature for each day and output to output.txt
-    auto x = get_forecast(readings,
-                          [](std::vector<int> &wea) -> double { return *std::max_element(wea.begin(), wea.end()); });
+    // Find the minimum temperature for each day and output to output.txt
+    auto minimum = get_forecast(readings,
+                                [](const std::vector<int> &wea) -> double
+                                {
+                                    return *std::min_element(wea.begin(), wea.end());
+                                });
 
-    // TODO: Find the minimum temperature for each day and output to output.txt
-
-    // TODO: Find the average temperature for each day and output to output.txt
+    // Find the average temperature for each day and output to output.txt
+    auto average = get_forecast(readings,
+                                [](const std::vector<int> &wea) -> double
+                                {
+                                    return std::accumulate(wea.begin(), wea.end(), double(0)) /
+                                           static_cast<double>(wea.size());
+                                });
 
     return 0;
 }
