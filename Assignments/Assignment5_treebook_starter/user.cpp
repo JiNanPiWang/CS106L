@@ -4,7 +4,6 @@
 #include <string>
 #include <utility>
 
-
 User::User(std::string name) noexcept
 {
 //  Implement the additional constructor here!
@@ -48,3 +47,7 @@ void User::setName(std::string name)
 }
 
 // TODO: Implement the < operator overload here!
+bool operator<(const User &a, const User &b)
+{
+    return a.name < b.name;
+}

@@ -25,7 +25,8 @@ public:
     // setter functions
     void setName(std::string name);
 
-    // TODO: add the < operator overload here!
+    // add the < operator overload here!
+    friend bool operator<(const User &a, const User &b);
 
 private:
     std::string name;
