@@ -5,6 +5,8 @@ class User {
 public:
     // TODO: write special member functions, including default constructor!
 
+    // default constructor
+    User() = default;
 
     User(std::string name);
 
