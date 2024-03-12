@@ -9,10 +9,10 @@ add_executable(CS106L
 #        Assignments/Assignment3_makeaclass/main.cpp
 #        Assignments/Assignment3_makeaclass/class.cpp
 #        Assignments/Assignment4_weatherforecast/main.cpp
-        Assignments/Assignment5_treebook_starter/main.cpp
-        Assignments/Assignment5_treebook_starter/user.h
-        Assignments/Assignment5_treebook_starter/user.cpp
-        #        LessonCodes/Lecture1.cpp
+#        Assignments/Assignment5_treebook_starter/main.cpp
+#        Assignments/Assignment5_treebook_starter/user.h
+#        Assignments/Assignment5_treebook_starter/user.cpp
+#        LessonCodes/Lecture1.cpp
 #        LessonCodes/Lecture2.cpp
 #        LessonCodes/Lecture3.cpp
 #        LessonCodes/Lecture5.cpp
@@ -25,5 +25,5 @@ add_executable(CS106L
 #        LessonCodes/Lecture14.cpp
 #        LessonCodes/Lecture15.cpp
 #        LessonCodes/Lecture16.cpp
-#        LessonCodes/Lecture17.cpp
+        LessonCodes/Lecture17.cpp
 )
