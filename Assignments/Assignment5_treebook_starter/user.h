@@ -1,22 +1,12 @@
 #include <set>
 #include <string>
 
-class User
-{
+class User {
 public:
-    // write special member functions, including default constructor!
+    // TODO: write special member functions, including default constructor!
 
-    // default constructor
-    User() = default;
-    User(std::string name) noexcept;
 
-    // 赋值的参数应该是另外一个对象
-    User(User &&other) noexcept;
-    User &operator=(User &&other) noexcept;
-
-    // 禁用复制
-    User(const User &) = delete;
-    User &operator=(const User &) = delete;
+    User(std::string name);
 
     // getter functions
     std::string getName() const;
@@ -25,8 +15,7 @@ public:
     // setter functions
     void setName(std::string name);
 
-    // add the < operator overload here!
-    friend bool operator<(const User &a, const User &b);
+    // TODO: add the < operator overload here!
 
 private:
     std::string name;
