@@ -9,10 +9,12 @@
 #include <mutex>
 #include <thread>
 #include <memory>
+#include <vector>
 
 using std::cout, std::endl;
 
 std::mutex mutex;
+const int NumThreads = 8;
 
 void greet(int id)
 {
@@ -24,13 +26,18 @@ int main()
 {
     cout << "Greetings from my threads..." << endl;
 
-    // 可以理解为，告诉一个工人需要去做什么
-    std::thread thread1(greet, 1);
-    std::thread thread2(greet, 2);
+    std::vector<std::thread> threads;
+    threads.reserve(NumThreads);
+    for (int i = 0; i < NumThreads; ++i)
+    {
+        // threads.push_back(std::thread(greet, i));
+        // 这里，emplace_back 直接将参数传递给 std::thread 的构造函数，而不需要显式创建 std::thread 对象。
+        threads.emplace_back(greet, i);
+    }
 
     // 可以理解为线程重新加入回main线程
-    thread1.join();
-    thread2.join();
+    for (auto &t : threads)
+        t.join();
 
     cout << "All greetings done!" << endl;
     return 0;
