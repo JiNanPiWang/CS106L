@@ -2,6 +2,6 @@
 
 Winter 2024 JANUARY 9, 2024 - MARCH 15, 2024
 
-Assignment原文件位于Assignments/Original_assignment_files中
+Assignment原文件位于，我们项目根目录下Assignments文件夹里面的Original_assignment_files文件夹中
 
 学习现代C++特性
